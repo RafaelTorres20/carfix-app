@@ -1,25 +1,14 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Touchable,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import Logo from '../../assets/logo.svg';
-import {
-  Content,
-  ForgotPassword,
-  Input,
-  Label,
-  LogoContainer,
-  MainButton,
-  SecondaryButton,
-  Title,
-} from './styles';
+import {Content, ForgotPassword, LogoContainer, Title} from './styles';
 import {RFPercentage} from 'react-native-responsive-fontsize';
-import theme from '../../styles/theme';
+import {Input} from '../../components/Input';
+import {MainButton} from '../../components/Buttons/MainButton';
+import {SecondaryButton} from '../../components/Buttons/SecondaryButton';
+import {useNavigation} from '@react-navigation/native';
 export const Login = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView>
       <View>
@@ -31,27 +20,21 @@ export const Login = () => {
         </LogoContainer>
         <Content>
           <Title>Entrar</Title>
-          <Label>Nome do usuário</Label>
           <Input
-            style={{marginBottom: RFPercentage(4)}}
+            label="Nome de usuário"
             placeholder="Digite seu nome de usuário"
           />
-          <Label>Senha</Label>
-          <Input
-            style={{marginBottom: RFPercentage(1)}}
-            placeholder="Digite sua senha"
-            secureTextEntry
-          />
+          <Input secure label="Senha" placeholder="Digite sua senha" />
           <ForgotPassword>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Forgot' as never)}>
               <Text>Esqueci minha senha</Text>
             </TouchableOpacity>
           </ForgotPassword>
-          <MainButton activeOpacity={0.8}>
-            <Title style={{color: theme.colors.white}}>Entrar</Title>
-          </MainButton>
-          <SecondaryButton activeOpacity={0.8}>
-            <Title style={{color: theme.colors.text}}>Criar conta</Title>
+          <MainButton>Entrar</MainButton>
+          <SecondaryButton
+            onClick={() => navigation.navigate('Register' as never)}>
+            Criar conta
           </SecondaryButton>
         </Content>
       </View>
