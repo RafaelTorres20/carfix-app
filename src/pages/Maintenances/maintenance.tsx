@@ -4,6 +4,7 @@ import {MainButton} from '../../components/Buttons/MainButton';
 import {CurrentKMBar, KMText, KMValue, UpdateKMButton} from './styles';
 import {MaintenanceCard} from '../../components/MaintenanceCard';
 import theme from '../../styles/theme';
+import {RFPercentage} from 'react-native-responsive-fontsize';
 
 export const Maintenances = () => {
   return (
@@ -18,10 +19,11 @@ export const Maintenances = () => {
         </UpdateKMButton>
       </CurrentKMBar>
       <FlatList
+        showsVerticalScrollIndicator={false}
+        ListFooterComponent={<View style={{height: RFPercentage(10)}}></View>}
         contentContainerStyle={{
           alignItems: 'center',
           paddingVertical: 30,
-          backgroundColor: theme.colors.white,
         }}
         data={[1, 2, 3, 4, 5]}
         renderItem={({item}) => <MaintenanceCard />}

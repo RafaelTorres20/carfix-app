@@ -23,6 +23,8 @@ import {Maintenances} from '../Maintenances';
 import {Costs} from '../Costs';
 import {Schedules} from '../Schedules';
 import {useNavigation} from '@react-navigation/native';
+import {useState} from 'react';
+import theme from '../../styles/theme';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 
@@ -43,6 +45,7 @@ const MyStatusBar = ({backgroundColor}: {backgroundColor: string}) => (
 const {Navigator, Screen} = createNativeStackNavigator();
 
 export const Main = () => {
+  const [page, setPage] = useState('Maintenance');
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <SafeAreaProvider>
@@ -51,7 +54,7 @@ export const Main = () => {
         <Header>
           <ImageCar resizeMode="contain" source={Prisma} />
           <MenuButton>
-            <Menu />
+            <Menu fill={theme.colors.text} />
           </MenuButton>
         </Header>
         <InfosContainer>
@@ -63,30 +66,45 @@ export const Main = () => {
         <MenuBar>
           <MenuItem
             onPress={() => {
+              setPage('Maintenance');
               navigation.navigate('Maintenance', {
                 screen: 'Maintenance',
                 initial: false,
               });
             }}>
-            <MaintenanceSVG />
+            <MaintenanceSVG
+              fill={
+                page === 'Maintenance'
+                  ? theme.colors.primary
+                  : theme.colors.text
+              }
+            />
           </MenuItem>
           <MenuItem
             onPress={() => {
+              setPage('Costs');
               navigation.navigate('Costs', {
                 screen: 'Costs',
                 initial: false,
               });
             }}>
-            <DollarSVG />
+            <DollarSVG
+              fill={page === 'Costs' ? theme.colors.primary : theme.colors.text}
+            />
           </MenuItem>
           <MenuItem
             onPress={() => {
+              setPage('Schedules');
               navigation.navigate('Schedules', {
                 screen: 'Schedules',
                 initial: false,
               });
             }}>
-            <CalendarSVG />
+            <CalendarSVG
+              fill={
+                page === 'Schedules' ? theme.colors.primary : theme.colors.text
+              }
+            />
           </MenuItem>
         </MenuBar>
         <View style={{flex: 1}}>
