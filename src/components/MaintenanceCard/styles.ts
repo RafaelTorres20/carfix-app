@@ -29,7 +29,7 @@ export const TitleContent = styled.View`
 `;
 
 export const CardTitle = styled.Text`
-  font-size: ${RFPercentage(2)}px;
+  font-size: ${RFPercentage(3)}px;
   font-weight: bold;
   color: ${({theme}) => theme.colors.text};
 `;

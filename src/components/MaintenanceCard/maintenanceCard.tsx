@@ -33,12 +33,12 @@ export const MaintenanceCard = () => {
       </Line>
       <Line>
         <PreviousKM>
-          <TextCard>119.000KM</TextCard>
-          <TextCard>Última troca</TextCard>
+          <TextCard style={{fontSize: RFPercentage(2.5)}}>119.000KM</TextCard>
+          <TextCard style={{fontSize: RFPercentage(2)}}>Última troca</TextCard>
         </PreviousKM>
         <NextKM>
-          <TextCard>139.000KM</TextCard>
-          <TextCard>Próxima troca</TextCard>
+          <TextCard style={{fontSize: RFPercentage(2.5)}}>119.000KM</TextCard>
+          <TextCard style={{fontSize: RFPercentage(2)}}>Última troca</TextCard>
         </NextKM>
       </Line>
       <Line>
