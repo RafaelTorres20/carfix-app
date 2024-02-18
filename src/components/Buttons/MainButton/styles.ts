@@ -3,15 +3,19 @@ import styled from 'styled-components/native';
 
 export const PrimaryButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.8,
-})`
+})<{$size?: string}>`
   width: 100%;
-  height: ${RFPercentage(7)}px;
+  height: ${props => {
+    if (props.$size === 'small') {
+      return RFPercentage(5.5);
+    } else {
+      return RFPercentage(7);
+    }
+  }}px;
   justify-content: center;
   align-items: center;
-  border-radius: ${RFPercentage(1.5)}px;
+  border-radius: ${RFPercentage(1)}px;
   background-color: ${({theme}) => theme.colors.primary};
-  margin-bottom: ${RFPercentage(3)}px;
-  margin-top: ${RFPercentage(5)}px;
 `;
 
 export const ButtonText = styled.Text`

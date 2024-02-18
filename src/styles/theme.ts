@@ -2,8 +2,9 @@ export default {
   colors: {
     primary: '#4FA684',
     secondary: '#1DD1A1',
-    background: '#F1F1F1',
+    background: '#fff',
     text: '#4B4B4B',
+    backgroundButton: '#DBDBDB',
     placeholder: '#A5A5A5',
     accent: '#9c27b0',
     error: '#FF6B6B',

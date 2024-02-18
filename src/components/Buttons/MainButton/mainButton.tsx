@@ -3,14 +3,20 @@ import {ButtonText, PrimaryButton} from './styles';
 import theme from '../../../styles/theme';
 
 type MainButtonProps = {
+  size?: 'small' | 'large';
   children: React.ReactNode;
   onClick?: () => void;
   color?: string;
 };
 
-export const MainButton = ({children, onClick, color}: MainButtonProps) => {
+export const MainButton = ({
+  children,
+  onClick,
+  color,
+  size,
+}: MainButtonProps) => {
   return (
-    <PrimaryButton onPress={onClick}>
+    <PrimaryButton $size={size} onPress={onClick}>
       <ButtonText style={{color: color ?? theme.colors.white}}>
         {children}
       </ButtonText>

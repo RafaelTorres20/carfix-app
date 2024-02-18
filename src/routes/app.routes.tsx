@@ -5,7 +5,10 @@ import {Main} from '../pages/Main';
 const {Navigator, Screen} = createNativeStackNavigator();
 export const AppRoutes = () => {
   return (
-    <Navigator>
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Screen name="Home" component={Main} />
     </Navigator>
   );
