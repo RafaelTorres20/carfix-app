@@ -1,16 +1,17 @@
-import {View, Text, SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {Head} from '../../components/Head';
 import {Input} from '../../components/Input';
 import {Content} from '../../components/Content/content';
 import {MainButton} from '../../components/Buttons/MainButton';
 import {SecondaryButton} from '../../components/Buttons/SecondaryButton';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {RFPercentage} from 'react-native-responsive-fontsize';
 
 export const Register = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <Head title="Criar conta" />
+      <Head size={RFPercentage(0.6)} title="Criar conta" />
       <Content>
         <Input
           label="Nome de usuário"

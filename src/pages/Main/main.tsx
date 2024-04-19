@@ -4,6 +4,7 @@ import MaintenanceSVG from '../../assets/maintenance.svg';
 import DollarSVG from '../../assets/dollar.svg';
 import CalendarSVG from '../../assets/calendar.svg';
 import Prisma from '../../assets/prisma.jpg';
+import Plus from '../../assets/plus.svg';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {
   CarName,
@@ -25,6 +26,7 @@ import {Schedules} from '../Schedules';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import theme from '../../styles/theme';
+import {ButtonCircle} from '../../components/ButtonCircle';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 
@@ -46,6 +48,7 @@ const {Navigator, Screen} = createNativeStackNavigator();
 
 export const Main = () => {
   const [page, setPage] = useState('Maintenance');
+  const mainNavigation = useNavigation();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <SafeAreaProvider>
@@ -108,6 +111,14 @@ export const Main = () => {
           </MenuItem>
         </MenuBar>
         <View style={{flex: 1}}>
+          <ButtonCircle.Root
+            onPress={() => {
+              mainNavigation.navigate('AddMaintenance' as never);
+            }}>
+            <ButtonCircle.Icon
+              icon={<Plus width={30} height={30} fill={theme.colors.white} />}
+            />
+          </ButtonCircle.Root>
           <Navigator
             screenOptions={{
               headerShown: false,

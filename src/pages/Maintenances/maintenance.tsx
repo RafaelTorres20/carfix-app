@@ -3,7 +3,6 @@ import {Center} from '../../components/Center';
 import {MainButton} from '../../components/Buttons/MainButton';
 import {CurrentKMBar, KMText, KMValue, UpdateKMButton} from './styles';
 import {MaintenanceCard} from '../../components/MaintenanceCard';
-import theme from '../../styles/theme';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 
 export const Maintenances = () => {
@@ -18,6 +17,7 @@ export const Maintenances = () => {
           <MainButton size="small">Salvar</MainButton>
         </UpdateKMButton>
       </CurrentKMBar>
+
       <FlatList
         showsVerticalScrollIndicator={false}
         ListFooterComponent={<View style={{height: RFPercentage(10)}}></View>}

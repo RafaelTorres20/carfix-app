@@ -9,7 +9,6 @@ export const PrimaryButton = styled.TouchableOpacity.attrs({
   justify-content: center;
   align-items: center;
   border-radius: ${RFPercentage(1.5)}px;
-  background-color: ${({theme}) => theme.colors.background};
   margin-bottom: ${RFPercentage(6)}px;
 `;
 

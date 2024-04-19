@@ -1,11 +1,11 @@
 import {SafeAreaView} from 'react-native';
 import {HeadTitle, Title} from './styles';
 
-export const Head = ({title}: {title: string}) => {
+export const Head = ({title, size}: {title: string; size: number}) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{width: '100%'}}>
       <HeadTitle>
-        <Title>{title}</Title>
+        <Title $size={size}>{title}</Title>
       </HeadTitle>
     </SafeAreaView>
   );

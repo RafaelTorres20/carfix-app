@@ -1,9 +1,10 @@
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {Center} from '../../components/Center';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import {Calendar, CalendarUtils} from 'react-native-calendars';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import theme from '../../styles/theme';
 import {LocaleConfig} from 'react-native-calendars';
+import {useState} from 'react';
 
 LocaleConfig.locales['pt'] = {
   monthNames: [
@@ -48,6 +49,50 @@ LocaleConfig.locales['pt'] = {
 };
 LocaleConfig.defaultLocale = 'pt';
 export const Schedules = () => {
+  const [selectedDay, setSelectedDay] = useState(null);
+  const scheduledDates = ['2024-02-15', '2021-09-16', '2021-09-17'];
+  const getDate = (count: number) => {
+    const date = new Date();
+    const newDate = date.setDate(date.getDate() + count);
+    return CalendarUtils.getCalendarDateString(newDate);
+  };
+  const changeColorTextByState = (state: string, date: any) => {
+    const object = {
+      today: {
+        color: theme.colors.primary,
+        backgroundColor: theme.colors.background,
+      },
+      disabled: {
+        color: theme.colors.backgroundButton,
+        backgroundColor: theme.colors.background,
+      },
+      selected: {
+        color: theme.colors.white,
+        backgroundColor: theme.colors.primary,
+      },
+      scheduled: {
+        color: theme.colors.white,
+        backgroundColor: theme.colors.info,
+      },
+      default: {
+        color: theme.colors.text,
+        backgroundColor: theme.colors.background,
+      },
+    };
+    if (state === 'today') {
+      return object.today;
+    }
+    if (state === 'disabled') {
+      return object.disabled;
+    }
+    if (date.dateString === selectedDay) {
+      return object.selected;
+    }
+    if (scheduledDates.includes(date.dateString)) {
+      return object.scheduled;
+    }
+    return object.default;
+  };
   return (
     <ScrollView
       contentContainerStyle={{
@@ -70,17 +115,51 @@ export const Schedules = () => {
           elevation: 5,
         }}>
         <Calendar
-          onDayPress={day => {
-            console.log('selected day', day);
+          onDayPress={(day: any) => {
+            setSelectedDay(day.dateString);
+          }}
+          markedDates={{
+            [getDate(2)]: {
+              dotColor: 'red',
+              marked: true,
+            },
           }}
           enableSwipeMonths
+          dayComponent={({date, state}: any) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  setSelectedDay(date.dateString);
+                }}
+                style={{
+                  width: RFPercentage(4),
+                  height: RFPercentage(4),
+                  borderRadius: RFPercentage(5),
+                  backgroundColor: changeColorTextByState(state, date)
+                    .backgroundColor,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Text
+                  style={{
+                    color: changeColorTextByState(state, date).color,
+                    fontSize: RFPercentage(2.5),
+                  }}>
+                  {date.day}
+                </Text>
+              </TouchableOpacity>
+            );
+          }}
           theme={{
             todayTextColor: theme.colors.primary,
             arrowColor: theme.colors.primary,
-            monthTextColor: theme.colors.primary,
+            monthTextColor: theme.colors.text,
+            textMonthFontWeight: 'bold',
             indicatorColor: theme.colors.primary,
+            selectedDayBackgroundColor: theme.colors.primary,
+            selectedDayTextColor: theme.colors.primary,
             textDayFontSize: RFPercentage(2),
-            textMonthFontSize: RFPercentage(3),
+            textMonthFontSize: RFPercentage(2.5),
             textDayHeaderFontSize: RFPercentage(2),
           }}
         />
