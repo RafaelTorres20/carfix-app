@@ -16,8 +16,8 @@ export const MenuButton = styled.TouchableOpacity.attrs({
   margin: ${RFPercentage(1)}px;
   padding: ${RFPercentage(2)}px;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: ${RFPercentage(4)}px;
+  top: ${RFPercentage(1)}px;
   height: ${RFPercentage(6)}px;
   justify-content: center;
   align-items: center;

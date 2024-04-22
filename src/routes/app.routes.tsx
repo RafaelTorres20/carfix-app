@@ -5,6 +5,7 @@ import {AddMaintenance} from '../pages/AddMaintenance/addMaintenance';
 import {EditMaintenance} from '../pages/EditMaintenance/editMaintenance';
 import {AddCosts} from '../pages/AddCosts/addCosts';
 import {AddSchedules} from '../pages/AddSchedules/addSchedules';
+import {Menu} from '../pages/Menu/menu';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 export const AppRoutes = () => {
@@ -18,6 +19,7 @@ export const AppRoutes = () => {
       <Screen name="EditMaintenance" component={EditMaintenance} />
       <Screen name="AddCosts" component={AddCosts} />
       <Screen name="AddSchedules" component={AddSchedules} />
+      <Screen name="Menu" component={Menu} />
     </Navigator>
   );
 };

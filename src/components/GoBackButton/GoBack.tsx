@@ -10,8 +10,8 @@ export const GoBackButton = ({...rest}: ArrowButton) => {
   return (
     <GoBack {...rest}>
       <ArrowRight
-        width={RFPercentage(3)}
-        height={RFPercentage(3)}
+        width={RFPercentage(4)}
+        height={RFPercentage(4)}
         fontWeight={'bold'}
         fill={theme.colors.text}
       />

@@ -56,7 +56,7 @@ export const Main = () => {
       <SafeAreaView style={{flex: 1}}>
         <Header>
           <ImageCar resizeMode="contain" source={Prisma} />
-          <MenuButton>
+          <MenuButton onPress={() => navigation.navigate('Menu' as never)}>
             <Menu fill={theme.colors.text} />
           </MenuButton>
         </Header>
