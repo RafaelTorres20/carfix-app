@@ -37,8 +37,8 @@ export const MaintenanceCard = () => {
           <TextCard style={{fontSize: RFPercentage(2)}}>Última troca</TextCard>
         </PreviousKM>
         <NextKM>
-          <TextCard style={{fontSize: RFPercentage(2.5)}}>119.000KM</TextCard>
-          <TextCard style={{fontSize: RFPercentage(2)}}>Última troca</TextCard>
+          <TextCard style={{fontSize: RFPercentage(2.5)}}>130.000KM</TextCard>
+          <TextCard style={{fontSize: RFPercentage(2)}}>Próxima troca</TextCard>
         </NextKM>
       </Line>
       <Line>
@@ -49,7 +49,7 @@ export const MaintenanceCard = () => {
           color={theme.colors.primary}
           unfilledColor={theme.colors.backgroundButton}
           borderColor={theme.colors.backgroundButton}
-          width={RFPercentage(45)}
+          width={RFPercentage(40)}
           height={RFPercentage(2.5)}
           style={{marginBottom: RFPercentage(2)}}>
           <Center style={{position: 'absolute', left: '45%'}}>

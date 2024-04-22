@@ -13,12 +13,14 @@ export const Header = styled.View`
 export const MenuButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.8,
 })`
-  margin: 10px;
-  padding: 10px;
+  margin: ${RFPercentage(1)}px;
+  padding: ${RFPercentage(2)}px;
   position: absolute;
   right: 0;
   top: 0;
   height: ${RFPercentage(6)}px;
+  justify-content: center;
+  align-items: center;
   background-color: ${({theme}) => theme.colors.backgroundButton};
   border-radius: 10px;
 `;

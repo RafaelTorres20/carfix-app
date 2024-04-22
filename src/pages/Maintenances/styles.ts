@@ -25,7 +25,7 @@ export const KMValue = styled.TextInput.attrs({
   placeholder: '100.000',
   keyboardType: 'numeric',
 })`
-  font-size: ${RFPercentage(3)}px;
+  font-size: ${RFPercentage(2)}px;
   font-family: bold;
   width: 100%;
   align-items: center;
