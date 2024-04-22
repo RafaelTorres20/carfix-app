@@ -14,8 +14,10 @@ import {
 import theme from '../../styles/theme';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import {Center} from '../Center';
+import {useNavigation} from '@react-navigation/native';
 
 export const MaintenanceCard = () => {
+  const {navigate} = useNavigation();
   return (
     <Card
       style={{
@@ -29,7 +31,7 @@ export const MaintenanceCard = () => {
         <TitleContent>
           <CardTitle>Filtro de óleo</CardTitle>
         </TitleContent>
-        <ArrowButton />
+        <ArrowButton onPress={() => navigate('EditMaintenance' as never)} />
       </Line>
       <Line>
         <PreviousKM>

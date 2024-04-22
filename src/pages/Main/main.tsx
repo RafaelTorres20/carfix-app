@@ -113,7 +113,7 @@ export const Main = () => {
         <View style={{flex: 1}}>
           <ButtonCircle.Root
             onPress={() => {
-              mainNavigation.navigate('AddMaintenance' as never);
+              mainNavigation.navigate(`Add${page}` as never);
             }}>
             <ButtonCircle.Icon
               icon={<Plus width={30} height={30} fill={theme.colors.white} />}

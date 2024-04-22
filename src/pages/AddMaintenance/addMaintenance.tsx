@@ -16,7 +16,7 @@ export const AddMaintenance = () => {
       <View>
         <Content>
           <GoBackButton onPress={() => navigation.goBack()} />
-          <Head size={RFPercentage(0.6)} title="Adicionar manutenção"></Head>
+          <Head size={RFPercentage(0.5)} title="Adicionar manutenção"></Head>
           <Input label="Nome da manutenção:" placeholder="ex: filtro de óleo" />
           <Input
             label="Quilometragem atual do veículo:"

@@ -2,7 +2,8 @@ import {RFPercentage} from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 export const HeadTitle = styled.View`
-  height: ${RFPercentage(8.3)}px;
+  height: auto;
+  min-height: ${RFPercentage(7)}px;
   width: 100%;
   align-items: center;
   justify-content: center;
