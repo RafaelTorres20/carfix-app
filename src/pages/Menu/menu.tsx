@@ -17,6 +17,7 @@ import EditProfileIcon from '../../assets/edit-profile.svg';
 import EditVehicle from '../../assets/edit-vehicle.svg';
 import AddVehicle from '../../assets/add-vehicle.svg';
 import SignOut from '../../assets/signout.svg';
+import {useAuth} from '../../hooks/useAuth';
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 const styles = StyleSheet.create({
   statusBar: {
@@ -37,7 +38,8 @@ const MyStatusBar = ({backgroundColor}: {backgroundColor: string}) => (
 );
 
 export const Menu = () => {
-  const {goBack} = useNavigation();
+  const {goBack, navigate} = useNavigation();
+  const {signOut} = useAuth();
   return (
     <>
       <SafeAreaView style={{backgroundColor: '#FFF'}}>
@@ -103,7 +105,9 @@ export const Menu = () => {
                 fill={theme.colors.text}
               />
             }
-            onPress={() => {}}
+            onPress={() => {
+              navigate('EditProfile' as never);
+            }}
           />
           <MenuButton
             text="Adicionar Veículo"
@@ -141,7 +145,9 @@ export const Menu = () => {
               fill={theme.colors.red}
             />
           }
-          onPress={() => {}}
+          onPress={() => {
+            signOut();
+          }}
         />
       </Content>
     </>

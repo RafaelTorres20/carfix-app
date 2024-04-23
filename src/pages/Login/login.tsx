@@ -7,8 +7,10 @@ import {Input} from '../../components/Input';
 import {MainButton} from '../../components/Buttons/MainButton';
 import {SecondaryButton} from '../../components/Buttons/SecondaryButton';
 import {useNavigation} from '@react-navigation/native';
+import {useAuth} from '../../hooks/useAuth';
 export const Login = () => {
   const navigation = useNavigation();
+  const {signIn} = useAuth();
   return (
     <SafeAreaView>
       <View>
@@ -31,7 +33,12 @@ export const Login = () => {
               <Text>Esqueci minha senha</Text>
             </TouchableOpacity>
           </ForgotPassword>
-          <MainButton>Entrar</MainButton>
+          <MainButton
+            onClick={() => {
+              signIn('Rafael', '123456');
+            }}>
+            Entrar
+          </MainButton>
           <SecondaryButton
             onClick={() => navigation.navigate('Register' as never)}>
             Criar conta
