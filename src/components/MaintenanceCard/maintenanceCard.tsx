@@ -15,6 +15,7 @@ import theme from '../../styles/theme';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import {Center} from '../Center';
 import {useNavigation} from '@react-navigation/native';
+import {Platform} from 'react-native';
 
 export const MaintenanceCard = () => {
   const {navigate} = useNavigation();
@@ -51,7 +52,7 @@ export const MaintenanceCard = () => {
           color={theme.colors.primary}
           unfilledColor={theme.colors.backgroundButton}
           borderColor={theme.colors.backgroundButton}
-          width={RFPercentage(40)}
+          width={Platform.OS === 'ios' ? RFPercentage(35) : RFPercentage(40)}
           height={RFPercentage(2.5)}
           style={{marginBottom: RFPercentage(2)}}>
           <Center style={{position: 'absolute', left: '45%'}}>

@@ -117,6 +117,7 @@ export const Main = () => {
         <View style={{flex: 1}}>
           <ButtonCircle.Root
             onPress={() => {
+              console.log(`Add${page}`);
               mainNavigation.navigate(`Add${page}` as never);
             }}>
             <ButtonCircle.Icon

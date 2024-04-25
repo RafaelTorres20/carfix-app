@@ -5,8 +5,6 @@ import {
   StyleSheet,
   ImageBackground,
   KeyboardAvoidingView,
-  KeyboardAvoidingViewComponent,
-  KeyboardAvoidingViewBase,
   Platform,
   ScrollView,
 } from 'react-native';
@@ -23,10 +21,10 @@ import {
   InsideContentText,
   styles as ShadowStyles,
 } from './styles';
-import {Content} from '../../components/Content/content';
 import {Input} from '../../components/Input';
 import {MainButton} from '../../components/Buttons/MainButton';
 import {SecondaryButton} from '../../components/Buttons/SecondaryButton';
+import Prisma from '../../assets/prisma.jpg';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 const styles = StyleSheet.create({
@@ -47,13 +45,12 @@ const MyStatusBar = ({backgroundColor}: {backgroundColor: string}) => (
   </View>
 );
 
-export const EditProfile = () => {
+export const EditCar = () => {
   const {goBack} = useNavigation();
   return (
-    // <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <MyStatusBar backgroundColor={'transparent'} />
         <GoBackContainer>
           <GoBackStyled
@@ -62,13 +59,11 @@ export const EditProfile = () => {
             }}
           />
         </GoBackContainer>
-        <Head title="Editar perfil" size={RFPercentage(0.4)} />
+        <Head title="Editar veículo" size={RFPercentage(0.4)} />
         <ImageContainer>
           <ImageBackground
             resizeMode="cover"
-            source={{
-              uri: 'https://media.fstatic.com/X_lwYFQmoObSDOsBPxAgU5nrxKE=/full-fit-in/640x480/filters:format(webp)/media/accounts/avatar/2012/11/74188b4648d55870ffece41023ebd036.jpg',
-            }}
+            source={Prisma}
             imageStyle={{
               borderRadius: RFPercentage(100),
             }}
@@ -81,12 +76,14 @@ export const EditProfile = () => {
         </ImageContainer>
         <View style={{paddingHorizontal: RFPercentage(4)}}>
           <Input
-            label="Nome de usuário"
-            placeholder={'Digite seu nome de usuário'}
+            label="Nome do vaículo"
+            placeholder={'Digite o nome do veículo'}
           />
-          <Input label="E-mail" placeholder={'Digite seu e-mail'} />
-          <Input label="Senha" placeholder={'Digite sua senha'} />
-          <Input label="Confirmar senha" placeholder={'Confirmar senha'} />
+          <Input label="Placa" placeholder={'Digite sua placa'} />
+          <Input
+            label="Quilometragem atual do veículo"
+            placeholder={'Digite a quilometragem atual do veículo'}
+          />
           <MainButton style={{marginTop: RFPercentage(5)}}>Salvar</MainButton>
           <SecondaryButton
             onClick={() => {
@@ -94,6 +91,7 @@ export const EditProfile = () => {
             }}>
             Cancelar
           </SecondaryButton>
+          <View style={{width: '100%', height: RFPercentage(10)}}></View>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

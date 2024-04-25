@@ -5,13 +5,12 @@ import {Input} from '../../components/Input';
 import {MainButton} from '../../components/Buttons/MainButton';
 import {SecondaryButton} from '../../components/Buttons/SecondaryButton';
 import {useNavigation} from '@react-navigation/native';
-import {RFPercentage} from 'react-native-responsive-fontsize';
 
 export const Forgot = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <Head size={RFPercentage(0.6)} title="Esqueceu a senha?" />
+      <Head size={4} title="Esqueceu a senha?" />
       <Content>
         <Input label="E-mail" placeholder="Digite seu e-mail" />
         <Buttons>

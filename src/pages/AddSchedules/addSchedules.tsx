@@ -20,7 +20,7 @@ export const AddSchedules = () => {
       <View>
         <Content>
           <GoBackButton onPress={() => navigation.goBack()} />
-          <Head size={RFPercentage(0.5)} title="Marcar na agenda"></Head>
+          <Head size={4} title="Marcar na agenda"></Head>
           <Input label="Nome do evento:" placeholder="ex: filtro de óleo" />
           <TouchableOpacity
             style={{width: '100%'}}
@@ -31,8 +31,6 @@ export const AddSchedules = () => {
               placeholder=""
               value={date.toLocaleDateString('pt-BR').split('T')[0]}
               onPressIn={() => setOpen(true)}
-              onAccessibilityTap={() => setOpen(true)}
-              onTouchStart={() => setOpen(true)}
               editable={false}
             />
           </TouchableOpacity>

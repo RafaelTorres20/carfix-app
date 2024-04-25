@@ -7,7 +7,8 @@ import {AddCosts} from '../pages/AddCosts/addCosts';
 import {AddSchedules} from '../pages/AddSchedules/addSchedules';
 import {Menu} from '../pages/Menu/menu';
 import {EditProfile} from '../pages/EditProfile/editProfile';
-import {KeyboardAvoidingView, Platform} from 'react-native';
+import {AddCar} from '../pages/AddCar/addCar';
+import {EditCar} from '../pages/EditCar/editCar';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 export const AppRoutes = () => {
@@ -23,6 +24,8 @@ export const AppRoutes = () => {
       <Screen name="AddSchedules" component={AddSchedules} />
       <Screen name="Menu" component={Menu} />
       <Screen name="EditProfile" component={EditProfile} />
+      <Screen name="AddCar" component={AddCar} />
+      <Screen name="EditCar" component={EditCar} />
     </Navigator>
   );
 };

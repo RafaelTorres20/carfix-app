@@ -20,7 +20,7 @@ export const AddCosts = () => {
       <View>
         <Content>
           <GoBackButton onPress={() => navigation.goBack()} />
-          <Head size={RFPercentage(0.5)} title="Adicionar despesa"></Head>
+          <Head size={4} title="Adicionar despesa"></Head>
           <Input label="Nome da despesa:" placeholder="Ex: Filtro de óleo" />
           <Input label="Valor da despesa:" placeholder="Ex: R$500.00" />
           <TouchableOpacity
@@ -32,8 +32,6 @@ export const AddCosts = () => {
               placeholder=""
               value={date.toLocaleDateString('pt-BR').split('T')[0]}
               onPressIn={() => setOpen(true)}
-              onAccessibilityTap={() => setOpen(true)}
-              onTouchStart={() => setOpen(true)}
               editable={false}
             />
           </TouchableOpacity>

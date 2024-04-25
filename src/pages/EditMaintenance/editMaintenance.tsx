@@ -20,7 +20,7 @@ export const EditMaintenance = () => {
       <View>
         <Content>
           <GoBackButton onPress={() => navigation.goBack()} />
-          <Head size={RFPercentage(0.5)} title="Filtro de óleo"></Head>
+          <Head size={4} title="Filtro de óleo"></Head>
           <Input
             label="Alterar quilometragem da próxima troca:"
             placeholder="ex: 190.000"

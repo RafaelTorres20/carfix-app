@@ -11,7 +11,7 @@ export const Register = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <Head size={RFPercentage(0.6)} title="Criar conta" />
+      <Head size={4} title="Criar conta" />
       <Content>
         <Input
           label="Nome de usuário"

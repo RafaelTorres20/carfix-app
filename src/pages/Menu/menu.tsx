@@ -69,6 +69,7 @@ export const Menu = () => {
           <View
             style={{
               borderRadius: RFPercentage(100),
+              backgroundColor: theme.colors.background,
               shadowColor: theme.colors.text,
               shadowOffset: {
                 width: 0,
@@ -99,7 +100,7 @@ export const Menu = () => {
             text="Editar Perfil"
             icon={
               <EditProfileIcon
-                width={RFPercentage(3)}
+                width={`${RFPercentage(3)}px`}
                 height={RFPercentage(3)}
                 fontWeight={'bold'}
                 fill={theme.colors.text}
@@ -119,7 +120,9 @@ export const Menu = () => {
                 fill={theme.colors.text}
               />
             }
-            onPress={() => {}}
+            onPress={() => {
+              navigate('AddCar' as never);
+            }}
           />
           <MenuButton
             text="Editar Veículo"
@@ -131,7 +134,9 @@ export const Menu = () => {
                 fill={theme.colors.text}
               />
             }
-            onPress={() => {}}
+            onPress={() => {
+              navigate('EditCar' as never);
+            }}
           />
         </View>
         <MenuButton

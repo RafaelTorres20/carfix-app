@@ -5,7 +5,7 @@ export const ButtonContainer = styled.TouchableOpacity.attrs({
   activeOpacity: 0.8,
 })`
   width: 100%;
-  height: RFPercentage(5.5) px;
+  height: ${RFPercentage(5.5)}px;
   justify-content: flex-start;
   align-items: center;
   border-radius: ${RFPercentage(1)}px;
