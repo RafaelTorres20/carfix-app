@@ -31,7 +31,7 @@ const MyStatusBar = ({backgroundColor}: {backgroundColor: string}) => (
       <StatusBar
         translucent
         backgroundColor={backgroundColor}
-        barStyle={'default'}
+        barStyle={'dark-content'}
       />
     </SafeAreaView>
   </View>

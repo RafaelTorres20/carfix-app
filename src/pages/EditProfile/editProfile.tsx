@@ -5,6 +5,10 @@ import {
   StyleSheet,
   ImageBackground,
   KeyboardAvoidingView,
+  KeyboardAvoidingViewComponent,
+  KeyboardAvoidingViewBase,
+  Platform,
+  ScrollView,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {RFPercentage} from 'react-native-responsive-fontsize';
@@ -37,7 +41,7 @@ const MyStatusBar = ({backgroundColor}: {backgroundColor: string}) => (
       <StatusBar
         translucent
         backgroundColor={backgroundColor}
-        barStyle={'default'}
+        barStyle={'dark-content'}
       />
     </SafeAreaView>
   </View>
@@ -46,8 +50,10 @@ const MyStatusBar = ({backgroundColor}: {backgroundColor: string}) => (
 export const EditProfile = () => {
   const {goBack} = useNavigation();
   return (
-    <KeyboardAvoidingView>
-      <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
+    // <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <ScrollView>
         <MyStatusBar backgroundColor={'transparent'} />
         <GoBackContainer>
           <GoBackStyled
@@ -82,9 +88,15 @@ export const EditProfile = () => {
           <Input label="Senha" placeholder={'Digite sua senha'} />
           <Input label="Confirmar senha" placeholder={'Confirmar senha'} />
           <MainButton>Salvar</MainButton>
-          <SecondaryButton>Cancelar</SecondaryButton>
+          <SecondaryButton
+            onClick={() => {
+              goBack();
+            }}>
+            Cancelar
+          </SecondaryButton>
         </View>
-      </SafeAreaView>
+      </ScrollView>
     </KeyboardAvoidingView>
+    // </SafeAreaView>
   );
 };

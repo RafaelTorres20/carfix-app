@@ -39,7 +39,11 @@ const styles = StyleSheet.create({
 const MyStatusBar = ({backgroundColor}: {backgroundColor: string}) => (
   <View style={[styles.statusBar, {backgroundColor}]}>
     <SafeAreaView>
-      <StatusBar translucent backgroundColor={backgroundColor} />
+      <StatusBar
+        translucent
+        backgroundColor={backgroundColor}
+        barStyle={'dark-content'}
+      />
     </SafeAreaView>
   </View>
 );

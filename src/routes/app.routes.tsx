@@ -7,6 +7,7 @@ import {AddCosts} from '../pages/AddCosts/addCosts';
 import {AddSchedules} from '../pages/AddSchedules/addSchedules';
 import {Menu} from '../pages/Menu/menu';
 import {EditProfile} from '../pages/EditProfile/editProfile';
+import {KeyboardAvoidingView, Platform} from 'react-native';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 export const AppRoutes = () => {

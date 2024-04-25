@@ -30,14 +30,17 @@ export const EditMaintenance = () => {
               disabled={false}
               value={toggleCheckBox}
               onTintColor={theme.colors.primary}
+              onCheckColor={theme.colors.primary}
               tintColor={theme.colors.primary}
+              boxType="square"
               tintColors={{
                 true: theme.colors.primary,
                 false: theme.colors.text,
               }}
               onValueChange={newValue => setToggleCheckBox(newValue)}
             />
-            <Text style={{color: theme.colors.text}}>
+            <Text
+              style={{color: theme.colors.text, marginLeft: RFPercentage(2)}}>
               Foi feita uma manutenção nova?
             </Text>
           </CheckBoxContainer>

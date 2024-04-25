@@ -57,6 +57,8 @@ export const Costs = () => {
               onPress={onPressBar}
               disableScroll={false}
               scrollToEnd={true}
+              yAxisTextStyle={{color: theme.colors.text}}
+              xAxisLabelTextStyle={{color: theme.colors.text}}
             />
             <View
               style={{
