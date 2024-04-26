@@ -1,3 +1,4 @@
+import Toast from 'react-native-toast-message';
 import {IMaintenance} from '../types/maintenance';
 import api from './api';
 
@@ -16,7 +17,11 @@ export const getMaintenancesByUserID = async ({
     });
     return data.data;
   } catch (error) {
-    console.log(error);
+    Toast.show({
+      type: 'error',
+      text1: 'Erro ao fazer login',
+      text2: 'Verifique seus dados e tente novamente',
+    });
     return {} as IMaintenance[];
   }
 };

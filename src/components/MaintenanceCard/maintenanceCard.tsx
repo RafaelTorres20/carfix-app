@@ -18,9 +18,23 @@ import {useNavigation} from '@react-navigation/native';
 import {Platform} from 'react-native';
 import {IMaintenance} from '../../types/maintenance';
 import {useCar} from '../../hooks/useCar';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+type RootStackParamList = {
+  EditMaintenance: {
+    maintenance: IMaintenance;
+  };
+};
 
-export const MaintenanceCard = ({maintenance}: {maintenance: IMaintenance}) => {
-  const {navigate} = useNavigation();
+type NavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'EditMaintenance'
+>;
+
+type Props = {
+  maintenance: IMaintenance;
+};
+export const MaintenanceCard = ({maintenance}: Props) => {
+  const {navigate} = useNavigation<NavigationProp>();
   const {car} = useCar();
   const progress =
     (car.currentMileage - maintenance.lastMileage) /
@@ -38,7 +52,9 @@ export const MaintenanceCard = ({maintenance}: {maintenance: IMaintenance}) => {
         <TitleContent>
           <CardTitle>{maintenance.name}</CardTitle>
         </TitleContent>
-        <ArrowButton onPress={() => navigate('EditMaintenance' as never)} />
+        <ArrowButton
+          onPress={() => navigate('EditMaintenance', {maintenance})}
+        />
       </Line>
       <Line>
         <PreviousKM>

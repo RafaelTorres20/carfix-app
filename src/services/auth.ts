@@ -1,6 +1,7 @@
 import {AxiosResponse} from 'axios';
 import {IUser} from '../types/user';
 import api from './api';
+import Toast from 'react-native-toast-message';
 
 export const login = async ({
   email,
@@ -16,6 +17,10 @@ export const login = async ({
     });
     return data.data;
   } catch (error) {
-    console.log(error);
+    Toast.show({
+      type: 'error',
+      text1: 'Erro ao fazer login',
+      text2: 'Verifique seus dados e tente novamente',
+    });
   }
 };
