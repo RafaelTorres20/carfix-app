@@ -7,12 +7,11 @@ import {login} from '../services/auth';
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   const {mutateAsync} = useMutation({
     mutationKey: ['login'],
-    mutationFn: ({username, password}: {username: string; password: string}) =>
-      login(username, password),
+    mutationFn: login,
   });
   const [user, setUser] = useState<IUser>({} as IUser);
   const signIn = async (username: string, password: string) => {
-    const user = await mutateAsync({username, password});
+    const user = await mutateAsync({email: username, password});
     setUser(user as IUser);
   };
   const signOut = () => {

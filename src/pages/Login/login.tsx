@@ -11,8 +11,8 @@ import {useAuth} from '../../hooks/useAuth';
 import {API_BASE_URL} from 'react-native-dotenv';
 export const Login = () => {
   const navigation = useNavigation();
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState('rafael12@gmail.com');
+  const [password, setPassword] = React.useState('aT@123df');
   const {signIn} = useAuth();
   return (
     <SafeAreaView>
@@ -28,11 +28,13 @@ export const Login = () => {
           <Input
             onChangeText={setUsername}
             label="Nome de usuário"
+            defaultValue="rafael12@gmail.com"
             placeholder="Digite seu nome de usuário"
           />
           <Input
             onChangeText={setPassword}
-            secure
+            // secure
+            defaultValue="aT@123df"
             label="Senha"
             placeholder="Digite sua senha"
           />
@@ -43,7 +45,7 @@ export const Login = () => {
             </TouchableOpacity>
           </ForgotPassword>
           <MainButton
-            onClick={() => {
+            onPress={() => {
               signIn(username, password);
             }}>
             Entrar

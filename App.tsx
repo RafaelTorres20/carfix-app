@@ -5,7 +5,7 @@ import {AuthProvider} from './src/providers/authProvider';
 import theme from './src/styles/theme';
 import {ThemeProvider} from 'styled-components';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-
+import Toast from 'react-native-toast-message';
 const queryClient = new QueryClient();
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
           </NavigationContainer>
         </ThemeProvider>
       </AuthProvider>
+      <Toast />
     </QueryClientProvider>
   );
 }

@@ -63,7 +63,11 @@ export const Main = () => {
   const token = user.token;
   const mainNavigation = useNavigation();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const {data: car, isSuccess} = useQuery({
+  const {
+    data: car,
+    isSuccess,
+    isLoading,
+  } = useQuery({
     queryKey: ['car', userID],
     queryFn: (): Promise<ICar[]> => getCarByUserID(userID, token),
   });
@@ -144,14 +148,16 @@ export const Main = () => {
               icon={<Plus width={30} height={30} fill={theme.colors.white} />}
             />
           </ButtonCircle.Root>
-          <Navigator
-            screenOptions={{
-              headerShown: false,
-            }}>
-            <Screen name="Maintenance" component={Maintenances} />
-            <Screen name="Costs" component={Costs} />
-            <Screen name="Schedules" component={Schedules} />
-          </Navigator>
+          {isSuccess && !isLoading && (
+            <Navigator
+              screenOptions={{
+                headerShown: false,
+              }}>
+              <Screen name="Maintenance" component={Maintenances} />
+              <Screen name="Costs" component={Costs} />
+              <Screen name="Schedules" component={Schedules} />
+            </Navigator>
+          )}
         </View>
       </SafeAreaView>
     </SafeAreaProvider>

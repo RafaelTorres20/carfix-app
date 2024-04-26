@@ -10,5 +10,5 @@ export type ICar = {
   model: string;
   id: string;
   userID: string;
-  actualKm: number;
+  currentMileage: number;
 };

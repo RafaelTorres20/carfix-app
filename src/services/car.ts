@@ -20,3 +20,31 @@ export const getCarByUserID = async (
     return [] as ICar[];
   }
 };
+
+export const setMyCarMileage = async ({
+  carID,
+  currentMileage,
+  token,
+}: {
+  currentMileage: string;
+  carID: string;
+  token: string;
+}) => {
+  currentMileage = currentMileage.replace(/\D/g, '');
+  const km = parseInt(currentMileage);
+  try {
+    await api.patch(
+      `api/cars/${carID}`,
+      {
+        currentMileage: km,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
