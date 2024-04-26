@@ -11,7 +11,6 @@ export const login = async ({
   password: string;
 }): Promise<IUser | undefined> => {
   try {
-    console.log({email, password});
     const data = await api.post<any>('api/auth/login', {
       email,
       password,
@@ -21,7 +20,6 @@ export const login = async ({
     }
     return data.data;
   } catch (error) {
-    console.log(error);
     Toast.show({
       type: 'error',
       text1: 'Erro ao fazer login',

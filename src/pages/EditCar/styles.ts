@@ -15,7 +15,9 @@ export const GoBackStyled = styled(GoBackButton)`
   margin-top: ${RFPercentage(2.5)}px;
 `;
 
-export const ImageContainer = styled.View`
+export const ImageContainer = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
   width: 100%;
   justify-content: center;
   align-items: center;

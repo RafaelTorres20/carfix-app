@@ -102,3 +102,48 @@ export const addCar = async ({
     });
   }
 };
+
+export const editCar = async ({
+  name,
+  plate,
+  mileage,
+  photo,
+  token,
+  carID,
+  userID,
+}: {
+  name: string;
+  plate: string;
+  mileage: string;
+  photo: DocumentPickerResponse;
+  token: string;
+  carID: string;
+  userID: string;
+}) => {
+  mileage = mileage.replace(/\D/g, '');
+  const km = parseInt(mileage);
+  try {
+    const formData = new FormData();
+    formData.append('model', name);
+    formData.append('plate', plate);
+    formData.append('currentMileage', km.toString());
+    formData.append('userID', userID);
+    formData.append('photo', {
+      uri: photo.uri,
+      type: photo.type,
+      name: photo.name,
+    });
+
+    await api.put(`api/cars/${carID}`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  } catch (error) {
+    Toast.show({
+      type: 'error',
+      text1: 'Erro ao adicionar carro',
+    });
+  }
+};

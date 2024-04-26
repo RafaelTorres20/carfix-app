@@ -13,7 +13,6 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   });
   const [user, setUser] = useState<IUser>({} as IUser);
   const signIn = async (username: string, password: string) => {
-    console.log(API_BASE_URL);
     const user = await mutateAsync({email: username, password});
     setUser(user as IUser);
   };
