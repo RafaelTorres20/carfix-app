@@ -5,7 +5,7 @@ import {AuthRoutes} from './auth.routes';
 
 export const Routes = () => {
   const {user} = useAuth();
-  if (!user) {
+  if (!user?.id) {
     return <AuthRoutes />;
   }
   return <AppRoutes />;

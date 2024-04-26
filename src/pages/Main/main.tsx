@@ -24,9 +24,14 @@ import {Maintenances} from '../Maintenances';
 import {Costs} from '../Costs';
 import {Schedules} from '../Schedules';
 import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import theme from '../../styles/theme';
 import {ButtonCircle} from '../../components/ButtonCircle';
+import {useQuery} from '@tanstack/react-query';
+import {getCarByUserID} from '../../services/car';
+import {useAuth} from '../../hooks/useAuth';
+import {ICar} from '../../types/user';
+import {useCar} from '../../hooks/useCar';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 
@@ -52,8 +57,24 @@ const {Navigator, Screen} = createNativeStackNavigator();
 
 export const Main = () => {
   const [page, setPage] = useState('Maintenance');
+  const {setMyCar} = useCar();
+  const {user} = useAuth();
+  const userID = user.id;
+  const token = user.token;
   const mainNavigation = useNavigation();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const {data: car, isSuccess} = useQuery({
+    queryKey: ['car', userID],
+    queryFn: (): Promise<ICar[]> => getCarByUserID(userID, token),
+  });
+  useEffect(() => {
+    if (isSuccess) {
+      setMyCar(car[0]);
+    }
+  }, [isSuccess, car]);
+  if (!isSuccess) {
+    return <></>;
+  }
   return (
     <SafeAreaProvider>
       <MyStatusBar backgroundColor="#fff" />
@@ -65,9 +86,9 @@ export const Main = () => {
           </MenuButton>
         </Header>
         <InfosContainer>
-          <CarName>Prisma Joy 10MT</CarName>
+          <CarName>{car[0]?.model}</CarName>
           <Plate>
-            <PlateText>QQI7A93</PlateText>
+            <PlateText>{car[0]?.plate}</PlateText>
           </Plate>
         </InfosContainer>
         <MenuBar>
@@ -117,7 +138,6 @@ export const Main = () => {
         <View style={{flex: 1}}>
           <ButtonCircle.Root
             onPress={() => {
-              console.log(`Add${page}`);
               mainNavigation.navigate(`Add${page}` as never);
             }}>
             <ButtonCircle.Icon

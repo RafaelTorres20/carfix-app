@@ -8,8 +8,11 @@ import {MainButton} from '../../components/Buttons/MainButton';
 import {SecondaryButton} from '../../components/Buttons/SecondaryButton';
 import {useNavigation} from '@react-navigation/native';
 import {useAuth} from '../../hooks/useAuth';
+import {API_BASE_URL} from 'react-native-dotenv';
 export const Login = () => {
   const navigation = useNavigation();
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const {signIn} = useAuth();
   return (
     <SafeAreaView>
@@ -23,10 +26,16 @@ export const Login = () => {
         <Content>
           <Title>Entrar</Title>
           <Input
+            onChangeText={setUsername}
             label="Nome de usuário"
             placeholder="Digite seu nome de usuário"
           />
-          <Input secure label="Senha" placeholder="Digite sua senha" />
+          <Input
+            onChangeText={setPassword}
+            secure
+            label="Senha"
+            placeholder="Digite sua senha"
+          />
           <ForgotPassword>
             <TouchableOpacity
               onPress={() => navigation.navigate('Forgot' as never)}>
@@ -35,7 +44,7 @@ export const Login = () => {
           </ForgotPassword>
           <MainButton
             onClick={() => {
-              signIn('Rafael', '123456');
+              signIn(username, password);
             }}>
             Entrar
           </MainButton>
