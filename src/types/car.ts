@@ -4,4 +4,5 @@ export type ICar = {
   id: string;
   userID: string;
   currentMileage: number;
+  photo: string;
 };

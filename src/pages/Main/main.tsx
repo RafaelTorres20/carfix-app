@@ -84,7 +84,7 @@ export const Main = () => {
       <MyStatusBar backgroundColor="#fff" />
       <SafeAreaView style={{flex: 1}}>
         <Header>
-          <ImageCar resizeMode="contain" source={Prisma} />
+          <ImageCar resizeMode="cover" source={{uri: car[0].photo}} />
           <MenuButton onPress={() => navigation.navigate('Menu' as never)}>
             <Menu fill={theme.colors.text} />
           </MenuButton>

@@ -11,6 +11,7 @@ export const login = async ({
   password: string;
 }): Promise<IUser | undefined> => {
   try {
+    console.log({email, password});
     const data = await api.post<any>('api/auth/login', {
       email,
       password,
