@@ -30,7 +30,7 @@ import {ButtonCircle} from '../../components/ButtonCircle';
 import {useQuery} from '@tanstack/react-query';
 import {getCarByUserID} from '../../services/car';
 import {useAuth} from '../../hooks/useAuth';
-import {ICar} from '../../types/user';
+import {ICar} from '../../types/car';
 import {useCar} from '../../hooks/useCar';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;

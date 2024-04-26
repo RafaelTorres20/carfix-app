@@ -16,9 +16,15 @@ import {RFPercentage} from 'react-native-responsive-fontsize';
 import {Center} from '../Center';
 import {useNavigation} from '@react-navigation/native';
 import {Platform} from 'react-native';
+import {IMaintenance} from '../../types/maintenance';
+import {useCar} from '../../hooks/useCar';
 
-export const MaintenanceCard = () => {
+export const MaintenanceCard = ({maintenance}: {maintenance: IMaintenance}) => {
   const {navigate} = useNavigation();
+  const {car} = useCar();
+  const progress =
+    (car.currentMileage - maintenance.lastMileage) /
+    (maintenance.nextMileage - maintenance.lastMileage);
   return (
     <Card
       style={{
@@ -30,23 +36,27 @@ export const MaintenanceCard = () => {
       }}>
       <Line>
         <TitleContent>
-          <CardTitle>Filtro de óleo</CardTitle>
+          <CardTitle>{maintenance.name}</CardTitle>
         </TitleContent>
         <ArrowButton onPress={() => navigate('EditMaintenance' as never)} />
       </Line>
       <Line>
         <PreviousKM>
-          <TextCard style={{fontSize: RFPercentage(2.5)}}>119.000KM</TextCard>
+          <TextCard style={{fontSize: RFPercentage(2.5)}}>
+            {maintenance.lastMileage}KM
+          </TextCard>
           <TextCard style={{fontSize: RFPercentage(2)}}>Última troca</TextCard>
         </PreviousKM>
         <NextKM>
-          <TextCard style={{fontSize: RFPercentage(2.5)}}>130.000KM</TextCard>
+          <TextCard style={{fontSize: RFPercentage(2.5)}}>
+            {maintenance.nextMileage}KM
+          </TextCard>
           <TextCard style={{fontSize: RFPercentage(2)}}>Próxima troca</TextCard>
         </NextKM>
       </Line>
       <Line>
         <Progress.Bar
-          progress={0.5}
+          progress={progress}
           animated={true}
           borderRadius={RFPercentage(100)}
           color={theme.colors.primary}
@@ -56,7 +66,7 @@ export const MaintenanceCard = () => {
           height={RFPercentage(2.5)}
           style={{marginBottom: RFPercentage(2)}}>
           <Center style={{position: 'absolute', left: '45%'}}>
-            <Percentual>30%</Percentual>
+            <Percentual>{(progress * 100).toFixed(1)}%</Percentual>
           </Center>
         </Progress.Bar>
       </Line>

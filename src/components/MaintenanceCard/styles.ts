@@ -58,5 +58,6 @@ export const TextCard = styled.Text`
 export const Percentual = styled.Text`
   font-size: ${RFPercentage(2)}px;
   font-weight: bold;
-  color: ${({theme}) => theme.colors.text};
+  /* color: ${({theme}) => theme.colors.text}; */
+  color: black;
 `;

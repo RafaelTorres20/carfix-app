@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {ICar} from '../types/user';
+import {ICar} from '../types/car';
 
 type CarContextData = {
   car: ICar;

@@ -1,4 +1,4 @@
-import {ICar} from '../types/user';
+import {ICar} from '../types/car';
 import api from './api';
 
 export const getCarByUserID = async (

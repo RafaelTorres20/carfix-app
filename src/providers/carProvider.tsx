@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ICar} from '../types/user';
+import {ICar} from '../types/car';
 import {CarContext} from '../contexts/carContext';
 
 export const CarProvider = ({children}: {children: React.ReactNode}) => {
