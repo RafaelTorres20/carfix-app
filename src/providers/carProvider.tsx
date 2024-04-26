@@ -9,7 +9,7 @@ export const CarProvider = ({children}: {children: React.ReactNode}) => {
     setCar(car);
   };
   useEffect(() => {
-    if (car.id) {
+    if (car?.id) {
       setIsLoading(false);
     }
   }, [car]);

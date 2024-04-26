@@ -21,11 +21,11 @@ export const useMaintenance = () => {
   } = useQuery({
     queryKey: ['getMaintenances'],
     queryFn: (): Promise<IMaintenance[]> =>
-      getMaintenancesByCarID({carID: car.id, token: user.token}),
-    enabled: !!car.id,
+      getMaintenancesByCarID({carID: car?.id, token: user.token}),
+    enabled: !!car?.id,
   });
   const {mutateAsync} = useMutation({
-    mutationKey: ['setMileage', currentMileage, car.id, user.id],
+    mutationKey: ['setMileage', currentMileage, car?.id, user?.id],
     mutationFn: setMyCarMileage,
     onSuccess: () => {
       Toast.show({
@@ -44,7 +44,7 @@ export const useMaintenance = () => {
 
   const handleSetMileage = async () => {
     await mutateAsync({
-      carID: car.id,
+      carID: car?.id,
       currentMileage,
       token: user.token,
     });

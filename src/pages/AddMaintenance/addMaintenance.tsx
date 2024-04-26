@@ -36,7 +36,7 @@ export const AddMaintenance = () => {
           <MainButton
             onPress={async () => {
               try {
-                await mutateAsync({...form, carID: car.id, token: user.token});
+                await mutateAsync({...form, carID: car?.id, token: user.token});
                 queryClient.invalidateQueries({queryKey: ['getMaintenances']});
                 Toast.show({
                   type: 'success',

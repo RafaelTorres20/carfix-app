@@ -90,9 +90,9 @@ export const Main = () => {
           </MenuButton>
         </Header>
         <InfosContainer>
-          <CarName>{car[0]?.model}</CarName>
+          <CarName>{car[0]?.model ?? 'Nenhum veículo encontrado'}</CarName>
           <Plate>
-            <PlateText>{car[0]?.plate}</PlateText>
+            <PlateText>{car[0]?.plate ?? 'PLACA'}</PlateText>
           </Plate>
         </InfosContainer>
         <MenuBar>
