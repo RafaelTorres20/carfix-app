@@ -4,7 +4,7 @@ import Toast from 'react-native-toast-message';
 import {useAuth} from '../../hooks/useAuth';
 import {useCar} from '../../hooks/useCar';
 import {setMyCarMileage} from '../../services/car';
-import {getMaintenancesByUserID} from '../../services/maintenance';
+import {getMaintenancesByCarID} from '../../services/maintenance';
 import {IMaintenance} from '../../types/maintenance';
 
 export const useMaintenance = () => {
@@ -21,7 +21,8 @@ export const useMaintenance = () => {
   } = useQuery({
     queryKey: ['getMaintenances'],
     queryFn: (): Promise<IMaintenance[]> =>
-      getMaintenancesByUserID({userID: user.id, token: user.token}),
+      getMaintenancesByCarID({carID: car.id, token: user.token}),
+    enabled: !!car.id,
   });
   const {mutateAsync} = useMutation({
     mutationKey: ['setMileage', currentMileage, car.id, user.id],

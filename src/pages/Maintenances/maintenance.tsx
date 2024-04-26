@@ -38,7 +38,7 @@ export const Maintenances = () => {
         }}
         data={maintenances ?? []}
         renderItem={({item}) => <MaintenanceCard maintenance={item} />}
-        keyExtractor={item => item.toString()}
+        keyExtractor={item => item.id}
       />
     </View>
   );

@@ -15,8 +15,12 @@ export const login = async ({
       email,
       password,
     });
+    if (data.status === 304) {
+      return data.data;
+    }
     return data.data;
   } catch (error) {
+    console.log(error);
     Toast.show({
       type: 'error',
       text1: 'Erro ao fazer login',

@@ -30,8 +30,6 @@ export const EditMaintenance = () => {
     params: {maintenance},
   } = useRoute<EditMaintenanceRouteProp>();
   const {car} = useCar();
-
-  console.log('Params', maintenance);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   return (
     <SafeAreaView>
