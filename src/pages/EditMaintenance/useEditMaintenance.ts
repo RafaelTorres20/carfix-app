@@ -115,17 +115,27 @@ export const useEditMaintenance = () => {
   }
 
   const edit = async () => {
+    
     try {
       setIsEditing(true);
-      await editMaintenance({
-        id: maintenance.id,
-        token: user.token,
-        lastMaintenance: form.lastMaintenance,
-        nextMaintenance: form.nextMaintenance,
-        name: form.name,
-        newMaintenance: toggleCheckBox,
-        maintenanceCost: form.maintenanceCost,
-      });
+      if(!toggleCheckBox){
+        await editMaintenance({
+          id: maintenance.id,
+          token: user.token,
+          nextMaintenance: form.nextMaintenance,
+          name: form.name
+        })
+      }else{
+        await editMaintenance({
+          id: maintenance.id,
+          token: user.token,
+          lastMaintenance: form.lastMaintenance,
+          nextMaintenance: form.nextMaintenance,
+          name: form.name,
+          newMaintenance: toggleCheckBox,
+          maintenanceCost: form.maintenanceCost,
+        });
+      }
       navigation.goBack();
     } catch (error) {
       setIsEditing(false);
