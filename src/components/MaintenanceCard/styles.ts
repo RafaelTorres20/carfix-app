@@ -1,4 +1,4 @@
-import {RFPercentage} from 'react-native-responsive-fontsize';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 export const Card = styled.View`
@@ -21,6 +21,7 @@ export const Line = styled.View`
 `;
 
 export const TitleContent = styled.View`
+width: 80%;
   flex-direction: row;
   justify-content: center;
   align-items: center;

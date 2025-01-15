@@ -1,21 +1,30 @@
-import {ButtonText, PrimaryButton} from './styles';
-import theme from '../../../styles/theme';
+import { ActivityIndicator, TouchableOpacityProps } from 'react-native';
 
-type SecondaryButtonProps = {
+import theme from '../../../styles/theme';
+import { ButtonText, PrimaryButton } from './styles';
+
+interface SecondaryButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
   onClick?: () => void;
   color?: string;
-};
+  isLoading?: boolean;
+}
 
 export const SecondaryButton = ({
   children,
   onClick,
   color,
+  isLoading,
+  ...rest
 }: SecondaryButtonProps) => {
   return (
-    <PrimaryButton onPress={onClick}>
+    <PrimaryButton {...rest} onPress={onClick}>
       <ButtonText style={{color: color ?? theme.colors.text}}>
-        {children}
+        {!isLoading ? (
+          children
+        ) : (
+          <ActivityIndicator size="small" color={theme.colors.white} />
+        )}
       </ButtonText>
     </PrimaryButton>
   );

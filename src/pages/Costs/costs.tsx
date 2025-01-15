@@ -1,10 +1,11 @@
-import {FlatList, Text, View} from 'react-native';
-import {Center} from '../../components/Center';
-import {BarChart} from 'react-native-gifted-charts';
-import {RFPercentage} from 'react-native-responsive-fontsize';
+import { useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { BarChart } from 'react-native-gifted-charts';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+
+import { CostCard } from '../../components/CostCard';
 import theme from '../../styles/theme';
-import {useState} from 'react';
-import {CostCard} from '../../components/CostCard';
+
 const barData = [
   {value: 500, label: 'Fev', frontColor: theme.colors.text},
   {value: 745, label: 'Mar', frontColor: theme.colors.text},

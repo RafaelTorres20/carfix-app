@@ -1,37 +1,30 @@
-import {SafeAreaView, View, StatusBar, StyleSheet} from 'react-native';
-import Menu from '../../assets/menu.svg';
-import MaintenanceSVG from '../../assets/maintenance.svg';
-import DollarSVG from '../../assets/dollar.svg';
-import CalendarSVG from '../../assets/calendar.svg';
-import Prisma from '../../assets/prisma.jpg';
-import Plus from '../../assets/plus.svg';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {
-  CarName,
-  Header,
-  ImageCar,
-  InfosContainer,
-  MenuBar,
-  MenuButton,
-  MenuItem,
-  Plate,
-  PlateText,
-} from './styles';
+import { useEffect, useState } from 'react';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Maintenances} from '../Maintenances';
-import {Costs} from '../Costs';
-import {Schedules} from '../Schedules';
-import {useNavigation} from '@react-navigation/native';
-import {useEffect, useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import {
+    createNativeStackNavigator, NativeStackNavigationProp
+} from '@react-navigation/native-stack';
+import { useQuery } from '@tanstack/react-query';
+
+import CalendarSVG from '../../assets/calendar.svg';
+import DollarSVG from '../../assets/dollar.svg';
+import MaintenanceSVG from '../../assets/maintenance.svg';
+import Menu from '../../assets/menu.svg';
+import Plus from '../../assets/plus.svg';
+import { ButtonCircle } from '../../components/ButtonCircle';
+import { useAuth } from '../../hooks/useAuth';
+import { useCar } from '../../hooks/useCar';
+import { getCarByUserID } from '../../services/car';
 import theme from '../../styles/theme';
-import {ButtonCircle} from '../../components/ButtonCircle';
-import {useQuery} from '@tanstack/react-query';
-import {getCarByUserID} from '../../services/car';
-import {useAuth} from '../../hooks/useAuth';
-import {ICar} from '../../types/car';
-import {useCar} from '../../hooks/useCar';
+import { ICar } from '../../types/car';
+import { Costs } from '../Costs';
+import { Maintenances } from '../Maintenances';
+import { Schedules } from '../Schedules';
+import {
+    CarName, Header, ImageCar, InfosContainer, MenuBar, MenuButton, MenuItem, Plate, PlateText
+} from './styles';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 
@@ -84,7 +77,7 @@ export const Main = () => {
       <MyStatusBar backgroundColor="#fff" />
       <SafeAreaView style={{flex: 1}}>
         <Header>
-          <ImageCar resizeMode="cover" source={{uri: car[0].photo}} />
+          <ImageCar resizeMode="cover" source={{uri: car[0]?.photo}} />
           <MenuButton onPress={() => navigation.navigate('Menu' as never)}>
             <Menu fill={theme.colors.text} />
           </MenuButton>

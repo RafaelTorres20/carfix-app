@@ -1,5 +1,6 @@
-import {RFPercentage} from 'react-native-responsive-fontsize';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
+
 import theme from '../../styles/theme';
 
 export const LogoContainer = styled.View`

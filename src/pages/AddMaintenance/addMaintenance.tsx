@@ -1,16 +1,15 @@
-import React from 'react';
-import {View, SafeAreaView} from 'react-native';
-import {Content} from './styles';
-import {Input} from '../../components/Input';
-import {MainButton} from '../../components/Buttons/MainButton';
-import {SecondaryButton} from '../../components/Buttons/SecondaryButton';
-import {GoBackButton} from '../../components/GoBackButton/GoBack';
-import {Head} from '../../components/Head';
-import Toast from 'react-native-toast-message';
-import {useAddMaintenance} from './useAddMaintenance';
+import { SafeAreaView, View } from 'react-native';
+
+import { MainButton } from '../../components/Buttons/MainButton';
+import { SecondaryButton } from '../../components/Buttons/SecondaryButton';
+import { GoBackButton } from '../../components/GoBackButton/GoBack';
+import { Head } from '../../components/Head';
+import { Input } from '../../components/Input';
+import { Content } from './styles';
+import { useAddMaintenance } from './useAddMaintenance';
 
 export const AddMaintenance = () => {
-  const {car, form, mutateAsync, navigation, queryClient, setForm, user} =
+  const {form, navigation, setForm, isAdding, createMaintenance} =
     useAddMaintenance();
   return (
     <SafeAreaView>
@@ -34,22 +33,9 @@ export const AddMaintenance = () => {
             onChangeText={text => setForm({...form, nextMaintenance: text})}
           />
           <MainButton
+            isLoading={isAdding}
             onPress={async () => {
-              try {
-                await mutateAsync({...form, carID: car?.id, token: user.token});
-                queryClient.invalidateQueries({queryKey: ['getMaintenances']});
-                Toast.show({
-                  type: 'success',
-                  text1: 'Manutenção adicionada com sucesso!',
-                });
-                navigation.goBack();
-              } catch (error) {
-                Toast.show({
-                  type: 'error',
-                  text1: 'Erro ao adicionar manutenção',
-                  text2: 'Verifique seus dados e tente novamente',
-                });
-              }
+              await createMaintenance();
             }}>
             Adicionar
           </MainButton>

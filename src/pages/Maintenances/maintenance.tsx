@@ -1,14 +1,22 @@
-import {FlatList, View} from 'react-native';
-import {Center} from '../../components/Center';
-import {MainButton} from '../../components/Buttons/MainButton';
-import {CurrentKMBar, KMText, KMValue, UpdateKMButton} from './styles';
-import {MaintenanceCard} from '../../components/MaintenanceCard';
-import {RFPercentage} from 'react-native-responsive-fontsize';
-import {useMaintenance} from './useMaintenance';
+import { FlatList, RefreshControl, View } from 'react-native';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+
+import { MainButton } from '../../components/Buttons/MainButton';
+import { Center } from '../../components/Center';
+import { MaintenanceCard } from '../../components/MaintenanceCard';
+import { CurrentKMBar, KMText, KMValue, UpdateKMButton } from './styles';
+import { useMaintenance } from './useMaintenance';
 
 export const Maintenances = () => {
-  const {currentMileage, maintenances, handleSetMileage, handleChangeMileage} =
-    useMaintenance();
+  const {
+    currentMileage,
+    maintenances,
+    refreshing,
+    isLoading,
+    onRefresh,
+    handleSetMileage,
+    handleChangeMileage,
+  } = useMaintenance();
 
   return (
     <View>
@@ -23,13 +31,19 @@ export const Maintenances = () => {
           />
         </Center>
         <UpdateKMButton>
-          <MainButton size="small" onPress={handleSetMileage}>
+          <MainButton
+            isLoading={isLoading}
+            size="small"
+            onPress={handleSetMileage}>
             Salvar
           </MainButton>
         </UpdateKMButton>
       </CurrentKMBar>
 
       <FlatList
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         showsVerticalScrollIndicator={false}
         ListFooterComponent={<View style={{height: RFPercentage(10)}}></View>}
         contentContainerStyle={{

@@ -1,44 +1,19 @@
-import React from 'react';
-import {ArrowButton} from '../ArrowButton';
+import { Platform } from 'react-native';
 import * as Progress from 'react-native-progress';
-import {
-  Card,
-  CardTitle,
-  Line,
-  NextKM,
-  Percentual,
-  PreviousKM,
-  TextCard,
-  TitleContent,
-} from './styles';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+
 import theme from '../../styles/theme';
-import {RFPercentage} from 'react-native-responsive-fontsize';
-import {Center} from '../Center';
-import {useNavigation} from '@react-navigation/native';
-import {Platform} from 'react-native';
-import {IMaintenance} from '../../types/maintenance';
-import {useCar} from '../../hooks/useCar';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-type RootStackParamList = {
-  EditMaintenance: {
-    maintenance: IMaintenance;
-  };
-};
+import { IMaintenance } from '../../types/maintenance';
+import { ArrowButton } from '../ArrowButton';
+import { Center } from '../Center';
+import {
+    Card, CardTitle, Line, NextKM, Percentual, PreviousKM, TextCard, TitleContent
+} from './styles';
+import { useMaintenanceCard } from './useMaintenanceCard';
 
-type NavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'EditMaintenance'
->;
-
-type Props = {
-  maintenance: IMaintenance;
-};
-export const MaintenanceCard = ({maintenance}: Props) => {
-  const {navigate} = useNavigation<NavigationProp>();
-  const {car} = useCar();
-  const progress =
-    (car.currentMileage - maintenance.lastMileage) /
-    (maintenance.nextMileage - maintenance.lastMileage);
+export const MaintenanceCard = ({maintenance}: {maintenance: IMaintenance}) => {
+  const {formatPercentage, progress, setColor, navigate} =
+    useMaintenanceCard(maintenance);
   return (
     <Card
       style={{
@@ -59,13 +34,13 @@ export const MaintenanceCard = ({maintenance}: Props) => {
       <Line>
         <PreviousKM>
           <TextCard style={{fontSize: RFPercentage(2.5)}}>
-            {maintenance.lastMileage}KM
+            {maintenance.lastMileage} km
           </TextCard>
           <TextCard style={{fontSize: RFPercentage(2)}}>Última troca</TextCard>
         </PreviousKM>
         <NextKM>
           <TextCard style={{fontSize: RFPercentage(2.5)}}>
-            {maintenance.nextMileage}KM
+            {maintenance.nextMileage} km
           </TextCard>
           <TextCard style={{fontSize: RFPercentage(2)}}>Próxima troca</TextCard>
         </NextKM>
@@ -75,14 +50,14 @@ export const MaintenanceCard = ({maintenance}: Props) => {
           progress={progress}
           animated={true}
           borderRadius={RFPercentage(100)}
-          color={theme.colors.primary}
+          color={setColor(progress)}
           unfilledColor={theme.colors.backgroundButton}
           borderColor={theme.colors.backgroundButton}
           width={Platform.OS === 'ios' ? RFPercentage(35) : RFPercentage(40)}
           height={RFPercentage(2.5)}
           style={{marginBottom: RFPercentage(2)}}>
           <Center style={{position: 'absolute', left: '45%'}}>
-            <Percentual>{(progress * 100).toFixed(1)}%</Percentual>
+            <Percentual>{formatPercentage(progress)}%</Percentual>
           </Center>
         </Progress.Bar>
       </Line>
